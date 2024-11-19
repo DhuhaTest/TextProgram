@@ -5,11 +5,15 @@ public class TextCounting {
 
 
     public void addLine(String line) {
-        lines++;
-        chars += line.length();
+
+        if (line != null && !line.trim().equalsIgnoreCase("stop") &&!line.trim().isEmpty())  {
+            lines++;
+            chars += line.length();
+        }
     }
 
     public int LinesCount() {
+
         return lines;
     }
 

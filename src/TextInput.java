@@ -15,9 +15,10 @@ public class TextInput {
                 System.out.println("Here is the result: ");
                 break;
             }
-            if (!input.isEmpty()) {
+            if (!input.trim().isEmpty()) {
                 count.addLine(input);
             }
+
 
         }
 
