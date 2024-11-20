@@ -1,5 +1,6 @@
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class TextTest {
@@ -77,13 +78,46 @@ public class TextTest {
         count.addLine("");
         count.addLine("  ");
 
-        int expectedLines = 2;
-        int expectedChars = 45;
-        int actualLines = count.LinesCount();
-        int actualChars = count.CharsCount();
 
-        assertEquals(expectedLines,actualLines);
-        assertEquals(expectedChars, actualChars);
+        assertEquals(2, count.LinesCount());
+        assertEquals(45, count.CharsCount());
+    }
+
+    @Test
+    public void wordsCount() {
+
+        TextCounting count = new TextCounting();
+
+        count.addLine("This is the first line");
+        count.addLine("This is the second line");
+        count.addLine("Stop");
+        count.addLine("STOP");
+        count.addLine("stop");
+        count.addLine("");
+        count.addLine("  ");
+
+
+        assertEquals(10, count.wordCount());
+
+    }
+
+    @Test
+    public void longestWord() {
+
+        TextCounting count = new TextCounting();
+
+        count.addLine("This is the first line");
+        count.addLine("This is the second line");
+        count.addLine("ThisIsTheLongestWord");
+        count.addLine("Stop");
+        count.addLine("STOP");
+        count.addLine("stop");
+        count.addLine("");
+        count.addLine("  ");
+
+
+        assertEquals("ThisIsTheLongestWord", count.longestWord());
+
     }
 }
 
