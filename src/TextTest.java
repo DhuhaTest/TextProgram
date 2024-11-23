@@ -1,7 +1,7 @@
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
+
 
 public class TextTest {
 
@@ -25,7 +25,28 @@ public class TextTest {
     }
 
     @Test
-    public void countChars() {
+    public void countCharsExcludingSpaces() {
+
+        TextCounting count = new TextCounting();
+
+        count.addLine("This is the first line");
+        count.addLine("This is the second line");
+        count.addLine("Stop");
+        count.addLine("STOP");
+        count.addLine("stop");
+        count.addLine("");
+        count.addLine("  ");
+
+
+        int expectedChars = 37;
+        int actualChars = count.CharsCountExcludingSpaces();
+
+        assertEquals(expectedChars, actualChars);
+
+    }
+
+    @Test
+    public void countCharsIncludingSpaces() {
 
         TextCounting count = new TextCounting();
 
@@ -39,7 +60,7 @@ public class TextTest {
 
 
         int expectedChars = 45;
-        int actualChars = count.CharsCount();
+        int actualChars = count.CharsCountIncludingSpaces();
 
         assertEquals(expectedChars, actualChars);
 
@@ -65,23 +86,6 @@ public class TextTest {
         assertEquals(expectedLines, actualLines);
     }
 
-    @Test
-    public void stopNotCounted() {
-
-        TextCounting count = new TextCounting();
-
-        count.addLine("This is the first line");
-        count.addLine("This is the second line");
-        count.addLine("Stop");
-        count.addLine("STOP");
-        count.addLine("stop");
-        count.addLine("");
-        count.addLine("  ");
-
-
-        assertEquals(2, count.LinesCount());
-        assertEquals(45, count.CharsCount());
-    }
 
     @Test
     public void wordsCount() {
@@ -118,6 +122,27 @@ public class TextTest {
 
         assertEquals("ThisIsTheLongestWord", count.longestWord());
 
+    }
+
+    @Test
+    public void stopNotCounted() {
+
+        TextCounting count = new TextCounting();
+
+        count.addLine("This is the first line");
+        count.addLine("This is the second line");
+        count.addLine("Stop");
+        count.addLine("STOP");
+        count.addLine("stop");
+        count.addLine("");
+        count.addLine("  ");
+
+
+        assertEquals(2, count.LinesCount());
+        assertEquals(37, count.CharsCountExcludingSpaces());
+        assertEquals(45, count.CharsCountIncludingSpaces());
+        assertEquals(10, count.wordCount());
+        assertEquals("second", count.longestWord());
     }
 }
 

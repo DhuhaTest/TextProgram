@@ -19,10 +19,11 @@ public class TextInput {
             }
         }
 
-        System.out.println("Number of lines, excluding 'stop': " + count.LinesCount());
-        System.out.println("Number of characters, excluding 'stop': " + count.CharsCount());
-        System.out.println("Number of words, excluding 'stop': " + count.wordCount());
-        System.out.println("The longest word, excluding 'stop': " + count.longestWord());
+        System.out.println("Number of lines: " + count.LinesCount());
+        System.out.println("Number of characters, excluding spaces: " + count.CharsCountExcludingSpaces());
+        System.out.println("Number of characters, including spaces: " + count.CharsCountIncludingSpaces());
+        System.out.println("Number of words: " + count.wordCount());
+        System.out.println("The longest word: " + count.longestWord());
 
 
         scanner.close();

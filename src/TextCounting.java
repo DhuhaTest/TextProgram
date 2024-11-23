@@ -1,7 +1,8 @@
 public class TextCounting {
 
     private int lines = 0;
-    private int chars = 0;
+    private int charExcludingSpaces = 0;
+    private int charIncludingSpaces = 0;
     private int wordsC = 0;
     private String longestWord = "";
 
@@ -11,7 +12,8 @@ public class TextCounting {
         if (line != null && !line.trim().equalsIgnoreCase("stop") && !line.trim().isEmpty()) {
 
             lines++;
-            chars += line.length();
+            charExcludingSpaces += line.replaceAll("\\s", "").length();
+            charIncludingSpaces += line.length();
             String[] words = line.split("\\s+");
             wordsC += words.length;
 
@@ -28,9 +30,14 @@ public class TextCounting {
         return lines;
     }
 
-    public int CharsCount() {
-        return chars;
+    public int CharsCountExcludingSpaces() {
+        return charExcludingSpaces;
     }
+
+    public int CharsCountIncludingSpaces() {
+        return charIncludingSpaces;
+    }
+
 
     public int wordCount() {
         return wordsC;
